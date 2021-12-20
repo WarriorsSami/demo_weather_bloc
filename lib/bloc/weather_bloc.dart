@@ -12,11 +12,11 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
 
   WeatherBloc(this.weatherRepository) : super(const WeatherInitial()) {
-    on<WeatherEvent>((event, emit) {
+    on<WeatherEvent>((event, emit) async {
       if (event is GetWeather) {
         emit(const WeatherLoading());
 
-        weatherRepository.fetchWeather(event.cityName!).then((weather) {
+        await weatherRepository.fetchWeather(event.cityName!).then((weather) {
           emit(WeatherLoaded(weather: weather));
         }).catchError((error) {
           emit(WeatherError(error: error.toString()));
@@ -24,7 +24,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       } else if (event is GetDetailedWeather) {
         emit(const WeatherLoading());
 
-        weatherRepository.fetchDetailedWeather(event.cityName!).then((weather) {
+        await weatherRepository.fetchDetailedWeather(event.cityName!).then((weather) {
           emit(WeatherLoaded(weather: weather));
         }).catchError((error) {
           emit(WeatherError(error: "Couldn't fetch weather! Are you online?\nErr: ${error.toString()}"));
