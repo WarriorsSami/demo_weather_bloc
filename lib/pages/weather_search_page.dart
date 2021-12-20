@@ -77,13 +77,16 @@ class WeatherSearchPage extends StatelessWidget {
         ElevatedButton(
           child: const Text('See Details'),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) =>
-                  WeatherDetailPage(
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: BlocProvider.of<WeatherBloc>(context),
+                  child: WeatherDetailPage(
                     masterWeather: weather,
-                    key: null,
                   ),
-            ));
+                ),
+              ),
+            );
           },
         ),
         const CityInputField(),
