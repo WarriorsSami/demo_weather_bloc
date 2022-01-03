@@ -3,7 +3,6 @@ on:
   push:
     branches:
      - master
-
 jobs: 
   build: 
     name: Build APK 
@@ -16,6 +15,7 @@ jobs:
     - uses: subosito/flutter-action@v1
       with: 
         flutter-version: '2.5.3' 
+    - run: flutter upgrade
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk --debug --split-per-abi
