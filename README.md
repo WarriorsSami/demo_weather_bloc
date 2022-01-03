@@ -1,6 +1,6 @@
 # demo_weather_bloc
 
-A new Flutter project for testing CI and BLoC
+A new Flutter project for testing CI with Github Actions and BLoC
 
 ## Getting Started
 
