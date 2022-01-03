@@ -17,7 +17,7 @@ jobs:
         flutter-version: '2.5.3' 
     - run: flutter upgrade
     - run: flutter pub get
-    - run: flutter test
+    # - run: flutter test
     - run: flutter build apk --debug --split-per-abi
     - name: Push APK to Releases 
       uses: ncipollo/release-action@v1
